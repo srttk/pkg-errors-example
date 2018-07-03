@@ -5,11 +5,11 @@ import (
 	"github.com/pkg/errors"
 )
 
-func main() {
-	type stackTracer interface {
-		StackTrace() errors.StackTrace
-	}
+type stackTracer interface {
+	StackTrace() errors.StackTrace
+}
 
+func main() {
 	err, ok := errors.Cause(errFunc()).(stackTracer)
 	if !ok {
 		panic("oops, err does not implement stackTracer")
@@ -20,5 +20,5 @@ func main() {
 }
 
 func errFunc() error {
-  return errors.New("some err")
+	return errors.New("some err")
 }
